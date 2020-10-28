@@ -85,6 +85,7 @@ namespace JMMT.JMMT
 
         public static void Fix()
         {
+         Main.Mod.Debug("Fixing Big Dumbass");
             bigboss = library.CopyAndAdd<BlueprintUnit>(originBigBossBP, "JMMTBigBossEarly", copyBigBossBP); //copies, not a deep copy
             bigboss.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
             bigboss.LocalizedName.String = Helpers.CreateString("JMMTBigBossEarlyName", "Big Dumbass"); //Changes the name of the custom hydra
@@ -116,13 +117,24 @@ namespace JMMT.JMMT
                     }
                 }
             }
-        }
-
-            public void OnAreaScenesLoaded() //unused
+        
+        
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
             {
-
+                Main.Mod.Debug("Found the dumbass area");
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originBigBossBP))
+                    {
+                        Main.Mod.Debug("Replacing little dumbass for Big Dumbass");
+                    }
+                }
             }
         }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
     }
-
-
+}
