@@ -114,19 +114,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originBigBossBP))
                     {
                         Main.Mod.Debug("Replacing little dumbass for Big Dumbass");
-                    }
-                }
-            }
-        
-        
-            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
-            {
-                Main.Mod.Debug("Found the dumbass area");
-                foreach (var unit in Game.Instance.State.Units)
-                {
-                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originBigBossBP))
-                    {
-                        Main.Mod.Debug("Replacing little dumbass for Big Dumbass");
+                        Game.Instance.EntityCreator.SpawnUnit(bigboss, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
                     }
                 }
             }
