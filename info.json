@@ -1,0 +1,10 @@
+{
+    "Id": "JMMT",
+    "DisplayName": "JMMT",
+    "Author": "Hambeard",
+    "Version": "1.0.0",
+    "ManagerVersion": "0.18.0",
+    "Requirements": [],
+    "AssemblyName": "JMMT.dll",
+    "EntryMethod": "JMMT.Main.Load"
+}
