@@ -33,7 +33,10 @@ namespace JMMT.Patches
                 JMMT.ChangeOakSkeletonChamp.Fix();
                 JMMT.ChangeRangedBrevoyBad.Fix();
                 JMMT.ChangeSpectres.Fix();
+                JMMT.ChangeGoblinSentry.Fix();
+                JMMT.ChangeGoblinSlyEye.Fix();
                 
+
 
 #if DEBUG
                 string guid_file_name = $@"{ModPath}blueprints.txt";

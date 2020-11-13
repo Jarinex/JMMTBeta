@@ -408,6 +408,115 @@ namespace JMMT.JMMT
         }
     }
 
+    class ChangeGoblinSentry : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originGoblinSentryBP = "dc7565e90a235be4f9e89b9376e5178d";
+        static readonly string copyGoblinSentryBP = "8f0f0b0bfaae479e9a70860e33be4961";
+        static readonly string areaToReplaceBPIn = "4b90066eae221c747a01997fef7eab0f";
+
+        static BlueprintUnit GoblinSentry;
+
+        public static void Fix()
+        {
+            GoblinSentry = library.CopyAndAdd<BlueprintUnit>(originGoblinSentryBP, "JMMTGoblinSentry", copyGoblinSentryBP); //copies, not a deep copy
+            GoblinSentry.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            GoblinSentry.LocalizedName.String = Helpers.CreateString("JMMTGoblinSentry", "Goblin Horsereaper");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originGoblinSentryBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(GoblinSentry, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeGoblinSlyEye : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originGoblinSlyEyeBP = "d6064481c5e38604eb930a27a6b4ab0e";
+        static readonly string copyGoblinSlyEyeBP = "8df02cfd6b0b4e9998c1dc1031dbaa34";
+        static readonly string areaToReplaceBPIn = "4b90066eae221c747a01997fef7eab0f";
+
+        static BlueprintUnit GoblinSlyEye;
+
+        public static void Fix()
+        {
+            GoblinSlyEye = library.CopyAndAdd<BlueprintUnit>(originGoblinSlyEyeBP, "JMMTGoblinSlyEye", copyGoblinSlyEyeBP); //copies, not a deep copy
+            GoblinSlyEye.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            GoblinSlyEye.LocalizedName.String = Helpers.CreateString("JMMTGoblinSlyEye", "Goblin EagleEye");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originGoblinSlyEyeBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(GoblinSlyEye, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
 
 }
 
