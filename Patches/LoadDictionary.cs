@@ -35,8 +35,15 @@ namespace JMMT.Patches
                 JMMT.ChangeSpectres.Fix();
                 JMMT.ChangeGoblinSentry.Fix();
                 JMMT.ChangeGoblinSlyEye.Fix();
+                JMMT.ChangeKoboldSentinels.Fix();
+                JMMT.ChangeKoboldArchers.Fix();
+                JMMT.ChangeKoboldEvoker.Fix();
+                JMMT.ChangeRuinedWatchBanditTransmuter.Fix();
+                JMMT.ChangeRuinedWatchBanditRogueMelee.Fix();
+                JMMT.ChangeRuinedWatchBanditRogueRanged.Fix();
+                JMMT.ChangeRuinedWatchBanditFighterlevel4.Fix();
+                JMMT.ChangeRuinedWatchBanditFighterRanged.Fix();
                 
-
 
 #if DEBUG
                 string guid_file_name = $@"{ModPath}blueprints.txt";

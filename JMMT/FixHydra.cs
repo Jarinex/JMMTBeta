@@ -518,6 +518,449 @@ namespace JMMT.JMMT
         }
     }
 
+    class ChangeKoboldSentinels : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originKoboldSentinelsBP = "601c0bdc5c5c8fb4eb42c4a89b006db2";
+        static readonly string copyKoboldSentinelsBP = "9c5720dd841249eaa2627bca7326cd40";
+        static readonly string areaToReplaceBPIn = "c3fb59125861b474098095ed6b396d9d";
+
+        static BlueprintUnit KoboldSentinels;
+
+        public static void Fix()
+        {
+            KoboldSentinels = library.CopyAndAdd<BlueprintUnit>(originKoboldSentinelsBP, "JMMTKoboldSentinels", copyKoboldSentinelsBP); //copies, not a deep copy
+            KoboldSentinels.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            KoboldSentinels.LocalizedName.String = Helpers.CreateString("JMMTKoboldSentinels", "Kobold Blade");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originKoboldSentinelsBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(KoboldSentinels, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeKoboldArchers : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originKoboldArchersBP = "8b23f76ebdd79a3468af56832a22f82e";
+        static readonly string copyKoboldArchersBP = "bd58fd5e18aa48d891045e42fe5f2afc";
+        static readonly string areaToReplaceBPIn = "8ad40376ad0a1a4499102c0755103a04";
+
+        static BlueprintUnit KoboldArchers;
+
+        public static void Fix()
+        {
+            KoboldArchers = library.CopyAndAdd<BlueprintUnit>(originKoboldArchersBP, "JMMTKoboldArchers", copyKoboldArchersBP); //copies, not a deep copy
+            KoboldArchers.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            KoboldArchers.LocalizedName.String = Helpers.CreateString("JMMTKoboldArchers", "Kobold Skirmisher");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originKoboldArchersBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(KoboldArchers, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeKoboldEvoker : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originKoboldEvokerBP = "16e4671000f326943b5348e42846f320";
+        static readonly string copyKoboldEvokerBP = "7c2e6cbfc0644d1c80a13c6f4d8aa294";
+        static readonly string areaToReplaceBPIn = "8ad40376ad0a1a4499102c0755103a04";
+
+        static BlueprintUnit KoboldEvoker;
+
+        public static void Fix()
+        {
+            KoboldEvoker = library.CopyAndAdd<BlueprintUnit>(originKoboldEvokerBP, "JMMTKoboldEvoker", copyKoboldEvokerBP); //copies, not a deep copy
+            KoboldEvoker.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            KoboldEvoker.LocalizedName.String = Helpers.CreateString("JMMTKoboldEvoker", "Kobold Dragon Shaman");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originKoboldEvokerBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(KoboldEvoker, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+
+    class ChangeRuinedWatchBanditTransmuter : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originRWTransmuterBP = "52e641a20d9feb34bab4d0e27f785d34";
+        static readonly string copyRWTransmuterBP = "865cf4ef10f04168a340eaf879f72a15";
+        static readonly string areaToReplaceBPIn = "973dacf5a7642a04183f0f10539ce093";
+
+        static BlueprintUnit RWTransmuter;
+
+        public static void Fix()
+        {
+            RWTransmuter = library.CopyAndAdd<BlueprintUnit>(originRWTransmuterBP, "JMMTRWTransmuter ", copyRWTransmuterBP); //copies, not a deep copy
+            RWTransmuter.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            RWTransmuter.LocalizedName.String = Helpers.CreateString("JMMTRWTransmuter ", "Bandit Transmuter");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRWTransmuterBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(RWTransmuter, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeRuinedWatchBanditRogueMelee : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originRWBanditRogueMeleeBP = "cdbdcfe136c81a4459ec886f030499b4";
+        static readonly string copyRWBanditRogueMeleeBP = "8c4e5cdd770c4add814b2c0e3a765811";
+        static readonly string areaToReplaceBPIn = "973dacf5a7642a04183f0f10539ce093";
+
+        static BlueprintUnit RWBanditRogueMelee;
+
+        public static void Fix()
+        {
+            RWBanditRogueMelee = library.CopyAndAdd<BlueprintUnit>(originRWBanditRogueMeleeBP, "JMMTRWBanditRogueMelee", copyRWBanditRogueMeleeBP); //copies, not a deep copy
+            RWBanditRogueMelee.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            RWBanditRogueMelee.LocalizedName.String = Helpers.CreateString("JMMTRWBanditRogueMelee", "Bandit");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRWBanditRogueMeleeBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(RWBanditRogueMelee, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeRuinedWatchBanditRogueRanged : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originRWBanditRogueRangedBP = "0693a983a7e460c4881b2aea51637999";
+        static readonly string copyRWBanditRogueRangedBP = "d53d5ec6942848d1bf0a4b778ba08a83";
+        static readonly string areaToReplaceBPIn = "973dacf5a7642a04183f0f10539ce093";
+
+        static BlueprintUnit RWBanditRogueRanged;
+
+        public static void Fix()
+        {
+            RWBanditRogueRanged = library.CopyAndAdd<BlueprintUnit>(originRWBanditRogueRangedBP, "JMMTRWBanditRogueRanged", copyRWBanditRogueRangedBP); //copies, not a deep copy
+            RWBanditRogueRanged.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            RWBanditRogueRanged.LocalizedName.String = Helpers.CreateString("JMMTRWBanditRogueRanged", "Bandit");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRWBanditRogueRangedBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(RWBanditRogueRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeRuinedWatchBanditFighterlevel4 : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originRWBanditFighterlevel4BP = "435e3d847f566e5479acd4de2642ba31";
+        static readonly string copyRWBanditFighterlevel4BP = "057aaf8db6bc4bc2bf963bbe1a11e316";
+        static readonly string areaToReplaceBPIn = "973dacf5a7642a04183f0f10539ce093";
+
+        static BlueprintUnit RWBanditFighterlevel4;
+
+        public static void Fix()
+        {
+            RWBanditFighterlevel4 = library.CopyAndAdd<BlueprintUnit>(originRWBanditFighterlevel4BP, "JMMTRWBanditFighterlevel4", copyRWBanditFighterlevel4BP); //copies, not a deep copy
+            RWBanditFighterlevel4.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            RWBanditFighterlevel4.LocalizedName.String = Helpers.CreateString("JMMTRWBanditFighterlevel4", "Bandit");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRWBanditFighterlevel4BP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(RWBanditFighterlevel4, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeRuinedWatchBanditFighterRanged : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originRWBanditFighterRangedBP = "96b5042d7d758534f85ffb5bf6dcffce";
+        static readonly string copyRWBanditFighterRangedBP = "b6eda239cb1d48d5935e9472a2a926a7";
+        static readonly string areaToReplaceBPIn = "973dacf5a7642a04183f0f10539ce093";
+
+        static BlueprintUnit RWBanditFighterRanged;
+
+        public static void Fix()
+        {
+            RWBanditFighterRanged = library.CopyAndAdd<BlueprintUnit>(originRWBanditFighterRangedBP, "JMMTRWBanditFighterRanged", copyRWBanditFighterRangedBP); //copies, not a deep copy
+            RWBanditFighterRanged.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            RWBanditFighterRanged.LocalizedName.String = Helpers.CreateString("JMMTRWBanditFighterRanged", "Bandit");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRWBanditFighterRangedBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(RWBanditFighterRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+
+
 }
 
 
