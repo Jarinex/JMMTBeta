@@ -43,8 +43,10 @@ namespace JMMT.Patches
                 JMMT.ChangeRuinedWatchBanditRogueRanged.Fix();
                 JMMT.ChangeRuinedWatchBanditFighterlevel4.Fix();
                 JMMT.ChangeRuinedWatchBanditFighterRanged.Fix();
+                JMMT.ChangeLoneHouseBanditFighterlevel4.Fix();
+                JMMT.ChangeLoneHouseBanditFighterRanged.Fix();
+                JMMT.ChangeLoneHouseBanditConjurer.Fix();
                 
-
 #if DEBUG
                 string guid_file_name = $@"{ModPath}blueprints.txt";
                 Helpers.GuidStorage.dump(guid_file_name);

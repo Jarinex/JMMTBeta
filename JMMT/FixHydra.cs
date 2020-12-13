@@ -959,7 +959,170 @@ namespace JMMT.JMMT
         }
     }
 
+    class ChangeLoneHouseBanditFighterlevel4 : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
 
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originLHBanditFighterlevel4BP = "f9945eeae56066c48ad81afaceeca960";
+        static readonly string copyLHBanditFighterlevel4BP = "c85030f5bd794e9e8878d364edc624e6";
+        static readonly string areaToReplaceBPIn = "3f191b1420761a240bfea4516bbf5477";
+
+        static BlueprintUnit LHBanditFighterlevel4;
+
+        public static void Fix()
+        {
+            LHBanditFighterlevel4 = library.CopyAndAdd<BlueprintUnit>(originLHBanditFighterlevel4BP, "JMMTLHBanditFighterlevel4", copyLHBanditFighterlevel4BP); //copies, not a deep copy
+            LHBanditFighterlevel4.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            LHBanditFighterlevel4.LocalizedName.String = Helpers.CreateString("JMMTLHBanditFighterlevel4", "Bandit");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originLHBanditFighterlevel4BP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(LHBanditFighterlevel4, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeLoneHouseBanditFighterRanged : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originLHBanditFighterRangedBP = "2ca6af051fe573a42a737be900c8ba5d";
+        static readonly string copyLHBanditFighterRangedBP = "cba50ae6db564bd5b128199e1833be3e";
+        static readonly string areaToReplaceBPIn = "3f191b1420761a240bfea4516bbf5477";
+
+        static BlueprintUnit LHBanditFighterRanged;
+
+        public static void Fix()
+        {
+            LHBanditFighterRanged = library.CopyAndAdd<BlueprintUnit>(originLHBanditFighterRangedBP, "JMMTLHBanditFighterRanged", copyLHBanditFighterRangedBP); //copies, not a deep copy
+            LHBanditFighterRanged.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            LHBanditFighterRanged.LocalizedName.String = Helpers.CreateString("JMMTLHBanditFighterRanged", "Bandit Archer");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originLHBanditFighterRangedBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(LHBanditFighterRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeLoneHouseBanditConjurer : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originLHBanditConjurerBP = "24088cc8784b8a0429316452bbb233b5";
+        static readonly string copyLHBanditConjurerBP = "16a4df6a38a54280b4819703d255136b";
+        static readonly string areaToReplaceBPIn = "3f191b1420761a240bfea4516bbf5477";
+
+        static BlueprintUnit LHBanditConjurer;
+
+        public static void Fix()
+        {
+            LHBanditConjurer = library.CopyAndAdd<BlueprintUnit>(originLHBanditConjurerBP, "JMMTLHBanditConjurer", copyLHBanditConjurerBP); //copies, not a deep copy
+            LHBanditConjurer.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            LHBanditConjurer.LocalizedName.String = Helpers.CreateString("JMMTLHBanditConjurer", "Bandit Conjurer");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originLHBanditConjurerBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(LHBanditConjurer, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
 
 }
 
