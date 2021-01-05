@@ -46,7 +46,13 @@ namespace JMMT.Patches
                 JMMT.ChangeLoneHouseBanditFighterlevel4.Fix();
                 JMMT.ChangeLoneHouseBanditFighterRanged.Fix();
                 JMMT.ChangeLoneHouseBanditConjurer.Fix();
+                JMMT.ChangeHuntingGroundHydra.Fix();
+                JMMT.ChangeSilverstepFrogs.Fix();
+                JMMT.ChangeSilverstepSmallTatzyl.Fix();
+                JMMT.ChangeCapitalFerociousHydra.Fix();
                 
+
+
 #if DEBUG
                 string guid_file_name = $@"{ModPath}blueprints.txt";
                 Helpers.GuidStorage.dump(guid_file_name);

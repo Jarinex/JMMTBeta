@@ -1124,6 +1124,226 @@ namespace JMMT.JMMT
         }
     }
 
+    class ChangeHuntingGroundHydra : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originHGHydraBP = "101c479b6cd567b4497ce4283c6d5b3b";
+        static readonly string copyHGHydraBP = "96ee2234876249df872a4fae05cac478";
+        static readonly string areaToReplaceBPIn = "584940f8293b75c4e9f3fdabeeababd6";
+
+        static BlueprintUnit HGHydra;
+
+        public static void Fix()
+        {
+            HGHydra = library.CopyAndAdd<BlueprintUnit>(originHGHydraBP, "JMMTHGHydra", copyHGHydraBP); //copies, not a deep copy
+            HGHydra.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            HGHydra.LocalizedName.String = Helpers.CreateString("JMMTHGHydra", "Primal Cyrohydra");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHGHydraBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(HGHydra, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeSilverstepFrogs : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originSilverFrogBP = "30080a8d8ae40bb43aca496b11b74c6b";
+        static readonly string copySilverFrogBP = "70266f804573468285cea8ae27437a8e";
+        static readonly string areaToReplaceBPIn = "34c828a6acd7dfd4ca8c7db689dece7d";
+
+        static BlueprintUnit SilverFrog;
+
+        public static void Fix()
+        {
+            SilverFrog = library.CopyAndAdd<BlueprintUnit>(originSilverFrogBP, "JMMTSilverFrog", copySilverFrogBP); //copies, not a deep copy
+            SilverFrog.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            SilverFrog.LocalizedName.String = Helpers.CreateString("JMMTSilverFrog", "Greater Giant Poisonous Frog");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originSilverFrogBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(SilverFrog, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeSilverstepSmallTatzyl : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originSilverSmallTatzylBP = "4dd913232eaf3894890b2bfaabcd8282";
+        static readonly string copySilverSmallTatzylBP = "b1027467a67844e2914ab07f109035da";
+        static readonly string areaToReplaceBPIn = "34c828a6acd7dfd4ca8c7db689dece7d";
+
+        static BlueprintUnit SilverSmallTatzyl;
+
+        public static void Fix()
+        {
+            SilverSmallTatzyl = library.CopyAndAdd<BlueprintUnit>(originSilverSmallTatzylBP, "JMMTSilverSmallTatzyl", copySilverSmallTatzylBP); //copies, not a deep copy
+            SilverSmallTatzyl.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            SilverSmallTatzyl.LocalizedName.String = Helpers.CreateString("JMMTSilverSmallTatzyl", "Quickling Tatzylwyrm");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originSilverSmallTatzylBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(SilverSmallTatzyl, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeCapitalFerociousHydra : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originCapitalHydraBP = "e135463f804adb541b402bae3f657af4";
+        static readonly string copyCapitalHydraBP = "76706df8414046b59951e407666779f6";
+        static readonly string areaToReplaceBPIn = "bf0bc94da0e88024b87b297635bc3bc7";
+
+        static BlueprintUnit CapitalHydra;
+
+        public static void Fix()
+        {
+            CapitalHydra = library.CopyAndAdd<BlueprintUnit>(originCapitalHydraBP, "JMMTCapitalHydra", copyCapitalHydraBP); //copies, not a deep copy
+            CapitalHydra.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            CapitalHydra.LocalizedName.String = Helpers.CreateString("JMMTCapitalHydra", "Primal Pyrohydra");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originCapitalHydraBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(CapitalHydra, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
 }
 
 
