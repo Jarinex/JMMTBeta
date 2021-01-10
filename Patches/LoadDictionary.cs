@@ -50,8 +50,11 @@ namespace JMMT.Patches
                 JMMT.ChangeSilverstepFrogs.Fix();
                 JMMT.ChangeSilverstepSmallTatzyl.Fix();
                 JMMT.ChangeCapitalFerociousHydra.Fix();
-                
-
+                JMMT.ChangeHollowEyesArcher.Fix();
+                JMMT.ChangeHollowMeleeFighterA.Fix();
+                JMMT.ChangeHollowMeleeFighterB.Fix();
+                JMMT.ChangeHollowMeleeBrawler.Fix();
+               
 
 #if DEBUG
                 string guid_file_name = $@"{ModPath}blueprints.txt";

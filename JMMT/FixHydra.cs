@@ -1344,6 +1344,230 @@ namespace JMMT.JMMT
         }
     }
 
+    class ChangeHollowEyesArcher : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originHollowEyesArcherBP = "afd39d3c17df206448c91db3fda6c6ed";
+        static readonly string copyHollowEyesArcherBP = "e19ab93e73984e0e9e65d7b06d766e5b";
+        static readonly string areaToReplaceBPIn = "63f0934aa847a88408da0b04d933669d";
+
+        static BlueprintUnit HollowEyesArcher;
+
+        public static void Fix()
+        {
+            HollowEyesArcher = library.CopyAndAdd<BlueprintUnit>(originHollowEyesArcherBP, "JMMTHollowEyesArcher", copyHollowEyesArcherBP); //copies, not a deep copy
+            HollowEyesArcher.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            HollowEyesArcher.LocalizedName.String = Helpers.CreateString("JMMTCapitalHydra", "Bandit");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHollowEyesArcherBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(HollowEyesArcher, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeHollowMeleeFighterA : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originHollowMeleeFighterABP = "179944f7553cafa468c6f548effbbf71";
+        static readonly string copyHollowMeleeFighterABP = "dc6e7077127a4326aa7d63cd04523161";
+        static readonly string areaToReplaceBPIn = "63f0934aa847a88408da0b04d933669d";
+
+        static BlueprintUnit HollowMeleeFighterA;
+
+        public static void Fix()
+        {
+            HollowMeleeFighterA = library.CopyAndAdd<BlueprintUnit>(originHollowMeleeFighterABP, "JMMTHollowMeleeFighterA", copyHollowMeleeFighterABP); //copies, not a deep copy
+            HollowMeleeFighterA.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            HollowMeleeFighterA.LocalizedName.String = Helpers.CreateString("JMMTHollowMeleeFighterA", "Bandit");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHollowMeleeFighterABP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(HollowMeleeFighterA, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeHollowMeleeFighterB : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originHollowMeleeFighterBBP = "341a00b2bbf4be9498049c62e6cd7456";
+        static readonly string copyHollowMeleeFighterBBP = "19e9d35272a947be8a0e2a3ac648d033";
+        static readonly string areaToReplaceBPIn = "63f0934aa847a88408da0b04d933669d";
+
+        static BlueprintUnit HollowMeleeFighterB;
+
+        public static void Fix()
+        {
+            HollowMeleeFighterB = library.CopyAndAdd<BlueprintUnit>(originHollowMeleeFighterBBP, "JMMTHollowMeleeFighterB", copyHollowMeleeFighterBBP); //copies, not a deep copy
+            HollowMeleeFighterB.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            HollowMeleeFighterB.LocalizedName.String = Helpers.CreateString("JMMTHollowMeleeFighterB", "Bandit");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHollowMeleeFighterBBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(HollowMeleeFighterB, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeHollowMeleeBrawler : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originHollowMeleeBrawlerBP = "23cde53a19471f943a94fbde18a61c0b";
+        static readonly string copyHollowMeleeBrawlerBP = "5099b31194dc484d8c2774ab949f4875";
+        static readonly string areaToReplaceBPIn = "63f0934aa847a88408da0b04d933669d";
+
+        static BlueprintUnit HollowMeleeBrawler;
+
+        public static void Fix()
+        {
+            HollowMeleeBrawler = library.CopyAndAdd<BlueprintUnit>(originHollowMeleeBrawlerBP, "JMMTHollowMeleeBrawler", copyHollowMeleeBrawlerBP); //copies, not a deep copy
+            HollowMeleeBrawler.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            HollowMeleeBrawler.LocalizedName.String = Helpers.CreateString("JMMTHollowMeleeBrawler", "Bandit Brawler");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHollowMeleeBrawlerBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(HollowMeleeBrawler, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    
+
+    
+
 }
 
 
