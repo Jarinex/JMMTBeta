@@ -54,7 +54,21 @@ namespace JMMT.Patches
                 JMMT.ChangeHollowMeleeFighterA.Fix();
                 JMMT.ChangeHollowMeleeFighterB.Fix();
                 JMMT.ChangeHollowMeleeBrawler.Fix();
-               
+                JMMT.ChangeClericofGorumArmag.Fix();
+                JMMT.ChangeAdvancedDweomercat.Fix();
+                JMMT.ChangeGhostMageArmag.Fix();
+                JMMT.ChangeInquisitorArmagFirst.Fix();
+                JMMT.ChangeInquisitorArmagSecond.Fix();
+                JMMT.ChangeHollowNightmareArchers.Fix();
+                JMMT.ChangeGhostMageArmagTwo.Fix();
+                JMMT.ChangeRiverBladeBard.Fix();
+                JMMT.ChangeRiverBladeRogueMelee.Fix();
+                JMMT.ChangeRiverBladeFighterRanged.Fix();
+                JMMT.ChangeRiverBladeRogueRanged.Fix();
+                JMMT.ChangeRiverBladeCleric.Fix();
+                
+
+            
 
 #if DEBUG
                 string guid_file_name = $@"{ModPath}blueprints.txt";

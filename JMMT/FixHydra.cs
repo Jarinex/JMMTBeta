@@ -59,7 +59,7 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHydraBP))
                     {
                         Game.Instance.EntityCreator.SpawnUnit(hydra, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
-                        unit.Destroy();
+                        
                     }
                 }
             }
@@ -201,7 +201,7 @@ namespace JMMT.JMMT
             Main.Mod.Debug("Fixing Devourer");
             Transmuter = library.CopyAndAdd<BlueprintUnit>(originTransmuterBP, "JMMTTransmuter", copyTransmuterBP); //copies, not a deep copy
             Transmuter.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
-            Transmuter.LocalizedName.String = Helpers.CreateString("JMMTTransmuter", "Weakling"); //Changes the name of the custom hydra
+            Transmuter.LocalizedName.String = Helpers.CreateString("JMMTTransmuter", "River Blade Wizard"); //Changes the name of the custom hydra
 
         }
 
@@ -1564,9 +1564,776 @@ namespace JMMT.JMMT
         }
     }
 
-    
+    class ChangeClericofGorumArmag : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
 
-    
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originClericofGorumBP = "4602809f9d59cc24a815d304715771c7";
+        static readonly string copyClericofGorumBP = "05e04c93beb54609bec87d6521f08ea9";
+        static readonly string areaToReplaceBPIn = "f0e41714d8f2bc14bb604bc0d4cfe40d";
+
+        static BlueprintUnit ClericofGorum;
+
+        public static void Fix()
+        {
+            ClericofGorum = library.CopyAndAdd<BlueprintUnit>(originClericofGorumBP, "JMMTClericofGorum", copyClericofGorumBP); //copies, not a deep copy
+            ClericofGorum.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            ClericofGorum.LocalizedName.String = Helpers.CreateString("JMMTClericofGorum", "Cleric of Gorum");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originClericofGorumBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(ClericofGorum, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeAdvancedDweomercat : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originDweomercatBP = "729464361d706f8429e4f4ea9b4f952c";
+        static readonly string copyDweomercatBP = "7fd6f944a42e444fbc9157996b460729";
+        static readonly string areaToReplaceBPIn = "4e4c968262e025e478ec6911e61aa705";
+
+        static BlueprintUnit Dweomercat;
+
+        public static void Fix()
+        {
+            Dweomercat = library.CopyAndAdd<BlueprintUnit>(originDweomercatBP, "JMMTDryad", copyDweomercatBP); //copies, not a deep copy
+            Dweomercat.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            Dweomercat.LocalizedName.String = Helpers.CreateString("JMMTDryad", "Adept Dryad");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originDweomercatBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(Dweomercat, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+
+    class ChangeGhostMageArmag : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originGhostMageArmagBP = "cb8ff0a7ba777ba4291dabb6008767be";
+        static readonly string copyGhostMageArmagBP = "4868d06edcd240f58e94d96beb2421ad";
+        static readonly string areaToReplaceBPIn = "4777ca570ca58c248a679ec3e9d9335d";
+
+        static BlueprintUnit GhostMageArmag;
+
+        public static void Fix()
+        {
+            GhostMageArmag = library.CopyAndAdd<BlueprintUnit>(originGhostMageArmagBP, "JMMTGhostMageArmag", copyGhostMageArmagBP); //copies, not a deep copy
+            GhostMageArmag.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            GhostMageArmag.LocalizedName.String = Helpers.CreateString("JMMTGhostMageArmag", "Venegeful Spectral Mage");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originGhostMageArmagBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(GhostMageArmag, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeInquisitorArmagFirst : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originInquisitorArmagABP = "5b7fc5f74b0195e42ba17f1d7e21a3c9";
+        static readonly string copyInquisitorArmagABP = "00b8c096d00e49ada6c5125a241b8f01";
+        static readonly string areaToReplaceBPIn = "4777ca570ca58c248a679ec3e9d9335d";
+
+        static BlueprintUnit InquisitorArmagA;
+
+        public static void Fix()
+        {
+            InquisitorArmagA = library.CopyAndAdd<BlueprintUnit>(originInquisitorArmagABP, "JMMTInquisitorArmagA", copyInquisitorArmagABP); //copies, not a deep copy
+            InquisitorArmagA.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            InquisitorArmagA.LocalizedName.String = Helpers.CreateString("JMMTInquisitorArmagA", "Inquisitor of Armag");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originInquisitorArmagABP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(InquisitorArmagA, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeInquisitorArmagSecond : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originInquisitorArmagBBP = "55f39411dc3c9ef43aa61c2d7fe3bfc9";
+        static readonly string copyInquisitorArmagBBP = "f4329022dd224823a5e245e407c7023c";
+        static readonly string areaToReplaceBPIn = "4777ca570ca58c248a679ec3e9d9335d";
+
+        static BlueprintUnit InquisitorArmagB;
+
+        public static void Fix()
+        {
+            InquisitorArmagB = library.CopyAndAdd<BlueprintUnit>(originInquisitorArmagBBP, "JMMTInquisitorArmagB", copyInquisitorArmagBBP); //copies, not a deep copy
+            InquisitorArmagB.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            InquisitorArmagB.LocalizedName.String = Helpers.CreateString("JMMTInquisitorArmagB", "Inquisitor of Armag");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originInquisitorArmagBBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(InquisitorArmagB, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeHollowNightmareArchers : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originHollowNightmareArcherBP = "9928642aa0612434bbb23f478dbbf988";
+        static readonly string copyHollowNightmareArcherBP = "0518c22039c4495288dd46de248a9f96";
+        static readonly string areaToReplaceBPIn = "295bafa1ddd480c47b21594f140a3aba";
+
+        static BlueprintUnit HollowNightmareArcher;
+
+        public static void Fix()
+        {
+            HollowNightmareArcher = library.CopyAndAdd<BlueprintUnit>(originHollowNightmareArcherBP, "JMMTHollowNightmareArcher", copyHollowNightmareArcherBP); //copies, not a deep copy
+            HollowNightmareArcher.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            HollowNightmareArcher.LocalizedName.String = Helpers.CreateString("JMMTHollowNightmareArcher", "Nightmare Skeletal Champion Archer");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHollowNightmareArcherBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(HollowNightmareArcher, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeGhostMageArmagTwo : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originGhostMageArmagTwoBP = "a24e752e4748bd548936020938effee1";
+        static readonly string copyGhostMageArmagTwoBP = "f582475c66864a009f6c07029c350a2c";
+        static readonly string areaToReplaceBPIn = "4777ca570ca58c248a679ec3e9d9335d";
+
+        static BlueprintUnit GhostMageArmagTwo;
+
+        public static void Fix()
+        {
+            GhostMageArmagTwo = library.CopyAndAdd<BlueprintUnit>(originGhostMageArmagTwoBP, "JMMTGhostMageArmagTwo", copyGhostMageArmagTwoBP); //copies, not a deep copy
+            GhostMageArmagTwo.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            GhostMageArmagTwo.LocalizedName.String = Helpers.CreateString("JMMTGhostMageArmagTwo", "Venegeful Spectral Mage");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originGhostMageArmagTwoBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(GhostMageArmagTwo, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeRiverBladeBard : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originRiverBladeBardBP = "3f2672c1a9877244cab3caf16e221507";
+        static readonly string copyRiverBladeBardBP = "c68f8282016f417c896e8536759ccc45";
+        static readonly string areaToReplaceBPIn = "a5b1798c2c0ceca4cb5c05af009bc54c";
+
+        static BlueprintUnit RiverBladeBard;
+
+        public static void Fix()
+        {
+            RiverBladeBard = library.CopyAndAdd<BlueprintUnit>(originRiverBladeBardBP, "JMMTRiverBladeBard", copyRiverBladeBardBP); //copies, not a deep copy
+            RiverBladeBard.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            RiverBladeBard.LocalizedName.String = Helpers.CreateString("JMMTRiverBladeBard", "River Blade Bard");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRiverBladeBardBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(RiverBladeBard, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeRiverBladeRogueMelee : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originRiverBladeRogueMeleeBP = "a305c49dc73fe9d419003d5469b50f93";
+        static readonly string copyRiverBladeRogueMeleeBP = "5aec1df0170f45d49ea41cccb7acd529";
+        static readonly string areaToReplaceBPIn = "a5b1798c2c0ceca4cb5c05af009bc54c";
+
+        static BlueprintUnit RiverBladeRogueMelee;
+
+        public static void Fix()
+        {
+            RiverBladeRogueMelee = library.CopyAndAdd<BlueprintUnit>(originRiverBladeRogueMeleeBP, "JMMTRiverBladeRogueMelee", copyRiverBladeRogueMeleeBP); //copies, not a deep copy
+            RiverBladeRogueMelee.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            RiverBladeRogueMelee.LocalizedName.String = Helpers.CreateString("JMMTRiverBladeRogueMelee", "River Blade Bandit");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRiverBladeRogueMeleeBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(RiverBladeRogueMelee, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeRiverBladeFighterRanged : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originRiverBladeFighterRangedBP = "02459ebf6d89e8845933a6565f3bc2e3";
+        static readonly string copyRiverBladeFighterRangedBP = "7bc81dc0338f4ff0a3096387c346857a";
+        static readonly string areaToReplaceBPIn = "a5b1798c2c0ceca4cb5c05af009bc54c";
+
+        static BlueprintUnit RiverBladeFighterRanged;
+
+        public static void Fix()
+        {
+            RiverBladeFighterRanged = library.CopyAndAdd<BlueprintUnit>(originRiverBladeFighterRangedBP, "JMMTRiverBladeFighterRanged", copyRiverBladeFighterRangedBP); //copies, not a deep copy
+            RiverBladeFighterRanged.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            RiverBladeFighterRanged.LocalizedName.String = Helpers.CreateString("JMMTRiverBladeFighterRanged", "River Blade Archer");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRiverBladeFighterRangedBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(RiverBladeFighterRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeRiverBladeRogueRanged : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originRiverBladeRogueRangedBP = "1af93c19b55cb1f4b8a3cd643f5cf0a3";
+        static readonly string copyRiverBladeRogueRangedBP = "8fdb3247227544ef935d158e7293009a";
+        static readonly string areaToReplaceBPIn = "a5b1798c2c0ceca4cb5c05af009bc54c";
+
+        static BlueprintUnit RiverBladeRogueRanged;
+
+        public static void Fix()
+        {
+            RiverBladeRogueRanged = library.CopyAndAdd<BlueprintUnit>(originRiverBladeRogueRangedBP, "JMMTRiverBladeRogueRanged", copyRiverBladeRogueRangedBP); //copies, not a deep copy
+            RiverBladeRogueRanged.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            RiverBladeRogueRanged.LocalizedName.String = Helpers.CreateString("JMMTRiverBladeRogueRanged", "River Blade Archer");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRiverBladeRogueRangedBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(RiverBladeRogueRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeRiverBladeCleric : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originRiverBladeClericBP = "5890cea7c5a05264ab8533ca458b4212";
+        static readonly string copyRiverBladeClericBP = "621a1133ee3c4eeca4548a7df5068cb2";
+        static readonly string areaToReplaceBPIn = "a5b1798c2c0ceca4cb5c05af009bc54c";
+
+        static BlueprintUnit RiverBladeCleric;
+
+        public static void Fix()
+        {
+            RiverBladeCleric = library.CopyAndAdd<BlueprintUnit>(originRiverBladeClericBP, "JMMTRiverBladeCleric", copyRiverBladeClericBP); //copies, not a deep copy
+            RiverBladeCleric.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            RiverBladeCleric.LocalizedName.String = Helpers.CreateString("JMMTRiverBladeCleric", "River Blade Cleric");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRiverBladeClericBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(RiverBladeCleric, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeLittletownFighterRanged : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originLittletownFighterRangedBP = "02459ebf6d89e8845933a6565f3bc2e3";
+        static readonly string copyLittletownFighterRangedBP = "a530916c6dab409b9354a11eed1e4862";
+        static readonly string areaToReplaceBPIn = "f2c0665786c0fc142b8d6668e31fb3e1";
+
+        static BlueprintUnit LittletownFighterRanged;
+
+        public static void Fix()
+        {
+            LittletownFighterRanged = library.CopyAndAdd<BlueprintUnit>(originLittletownFighterRangedBP, "JMMTLittletownFighterRanged", copyLittletownFighterRangedBP); //copies, not a deep copy
+            LittletownFighterRanged.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            LittletownFighterRanged.LocalizedName.String = Helpers.CreateString("JMMTLittletownFighterRanged", "River Blade Archer");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originLittletownFighterRangedBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(LittletownFighterRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeLittletownFighterMelee : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originLittletownFighterMeleeBP = "341a00b2bbf4be9498049c62e6cd7456";
+        static readonly string copyLittletownFighterMeleeBP = "1e000c3e08c54cbbb931c6908e0995fd";
+        static readonly string areaToReplaceBPIn = "f2c0665786c0fc142b8d6668e31fb3e1";
+
+        static BlueprintUnit LittletownFighterMelee;
+
+        public static void Fix()
+        {
+            LittletownFighterMelee = library.CopyAndAdd<BlueprintUnit>(originLittletownFighterMeleeBP, "JMMTLittletownFighterMelee", copyLittletownFighterMeleeBP); //copies, not a deep copy
+            LittletownFighterMelee.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            LittletownFighterMelee.LocalizedName.String = Helpers.CreateString("JMMTLittletownFighterMelee", "River Blade Fighter");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originLittletownFighterMeleeBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(LittletownFighterMelee, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
 
 }
 
