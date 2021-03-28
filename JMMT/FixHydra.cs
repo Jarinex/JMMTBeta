@@ -2335,6 +2335,117 @@ namespace JMMT.JMMT
         }
     }
 
+
+    class ChangeWhiteroseRanged: IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originWhiteroseRangedBP = "052db94288d9e804b9fd70723030ce0e";
+        static readonly string copyWhiteroseRangedBP = "b640e0571bfd4b7ea87f13e8462a3777";
+        static readonly string areaToReplaceBPIn = "5ec616b225074e246a6f64b3554819fb";
+
+        static BlueprintUnit WhiteroseRanged;
+
+        public static void Fix()
+        {
+            WhiteroseRanged = library.CopyAndAdd<BlueprintUnit>(originWhiteroseRangedBP, "JMMTWhiteroseRanged", copyWhiteroseRangedBP); //copies, not a deep copy
+            WhiteroseRanged.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            WhiteroseRanged.LocalizedName.String = Helpers.CreateString("JMMTWhiteroseRanged", "Pitax Priest");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originWhiteroseRangedBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(WhiteroseRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeWereratIrovetti : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originWereratIrovettiBP = "8a1f2d257fdc8e44e882ca4952f82ff7";
+        static readonly string copyWereratIrovettiBP = "c88710b7a72d48ca97c200fbab642249";
+        static readonly string areaToReplaceBPIn = "bf9dbc2998849ee40bbdba9cb40a7d4c";
+
+        static BlueprintUnit WereratIrovetti;
+
+        public static void Fix()
+        {
+            WereratIrovetti = library.CopyAndAdd<BlueprintUnit>(originWereratIrovettiBP, "JMMTWereratIrovetti", copyWereratIrovettiBP); //copies, not a deep copy
+            WereratIrovetti.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            WereratIrovetti.LocalizedName.String = Helpers.CreateString("JMMTWereratIrovetti", "Wererat");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originWereratIrovettiBP))
+                    {
+
+                        Game.Instance.EntityCreator.SpawnUnit(WereratIrovetti, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
 }
 
 

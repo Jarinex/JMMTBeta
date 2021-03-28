@@ -66,9 +66,9 @@ namespace JMMT.Patches
                 JMMT.ChangeRiverBladeFighterRanged.Fix();
                 JMMT.ChangeRiverBladeRogueRanged.Fix();
                 JMMT.ChangeRiverBladeCleric.Fix();
+                JMMT.ChangeWhiteroseRanged.Fix();
+                JMMT.ChangeWereratIrovetti.Fix();
                 
-
-            
 
 #if DEBUG
                 string guid_file_name = $@"{ModPath}blueprints.txt";
