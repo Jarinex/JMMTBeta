@@ -24,7 +24,7 @@ namespace JMMT.JMMT
 
         static readonly string originHydraBP = "3b8ffcb67319ef94d88e1ed4c5a89b71";
         static readonly string copyHydraBP = "c170726da63c4b20a18c585623e28e98";
-        static readonly string areaToReplaceBPIn = "c6b7bd4e20012b54cbe5643a815d20a3";
+        static readonly string areaToReplaceBPIn = "63f0934aa847a88408da0b04d933669d";
 
         static BlueprintUnit hydra;
 
@@ -135,7 +135,7 @@ namespace JMMT.JMMT
 
         static readonly string originDevourerBP = "741f1f72663260c4fa6350a8829c843e";
         static readonly string copyDevourerBP = "f8ddbfda51484c449d05b40a330b0a2c";
-        static readonly string areaToReplaceBPIn = "b407f0ee83587a24a8cd37ed7695c848";
+        static readonly string areaToReplaceBPIn = "63f0934aa847a88408da0b04d933669d";
 
         static BlueprintUnit Devourer;
 
