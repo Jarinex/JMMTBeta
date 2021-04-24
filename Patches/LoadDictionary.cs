@@ -27,17 +27,16 @@ namespace JMMT.Patches
 #endif
                 Helpers.GuidStorage.load(Properties.Resources.blueprints, allow_guid_generation);
                 JMMT.FixHydra.Fix(); //Load fix
-                JMMT.ChangeBigBossEarly.Fix();
-                JMMT.ChangePrisonDevourer.Fix();
-                JMMT.ChangeRiverBladeTransmuter.Fix();
+                JMMT.ChangeBigBossEarly.Fix(); //Keep, removes enemies
+                JMMT.ChangePrisonDevourer.Fix();//Not being used
                 JMMT.ChangeOakSkeletonChamp.Fix();
                 JMMT.ChangeRangedBrevoyBad.Fix();
                 JMMT.ChangeSpectres.Fix();
                 JMMT.ChangeGoblinSentry.Fix();
                 JMMT.ChangeGoblinSlyEye.Fix();
-                JMMT.ChangeKoboldSentinels.Fix();
-                JMMT.ChangeKoboldArchers.Fix();
-                JMMT.ChangeKoboldEvoker.Fix();
+                JMMT.ChangeKoboldSentinels.Fix();//used in a couple areas, might be able to change?
+                JMMT.ChangeKoboldArchers.Fix();//used once, might be able to change?
+                JMMT.ChangeKoboldEvoker.Fix(); //used once, might be able to change?
                 JMMT.ChangeRuinedWatchBanditTransmuter.Fix();
                 JMMT.ChangeRuinedWatchBanditRogueMelee.Fix();
                 JMMT.ChangeRuinedWatchBanditRogueRanged.Fix();
@@ -65,11 +64,13 @@ namespace JMMT.Patches
                 JMMT.ChangeRiverBladeRogueMelee.Fix();
                 JMMT.ChangeRiverBladeFighterRanged.Fix();
                 JMMT.ChangeRiverBladeRogueRanged.Fix();
+                JMMT.ChangeRiverBladeTransmuter.Fix();
                 JMMT.ChangeRiverBladeCleric.Fix();
                 JMMT.ChangeWhiteroseRanged.Fix();
                 JMMT.ChangeWereratIrovetti.Fix();
-                
+   
 
+                
 #if DEBUG
                 string guid_file_name = $@"{ModPath}blueprints.txt";
                 Helpers.GuidStorage.dump(guid_file_name);

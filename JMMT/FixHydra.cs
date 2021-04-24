@@ -58,8 +58,9 @@ namespace JMMT.JMMT
                 {
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHydraBP))
                     {
-                        Game.Instance.EntityCreator.SpawnUnit(hydra, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
-                        
+                        var newHydra = Game.Instance.EntityCreator.SpawnUnit(hydra, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newHydra.GroupId = unit.GroupId;
+                        unit.Destroy();
                     }
                 }
             }
@@ -226,8 +227,8 @@ namespace JMMT.JMMT
                 {
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originTransmuterBP))
                     {
-                        Main.Mod.Debug("Replacing little dumbass for Big Dumbass");
-                        Game.Instance.EntityCreator.SpawnUnit(Transmuter, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newTransmuter = Game.Instance.EntityCreator.SpawnUnit(Transmuter, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newTransmuter.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -283,8 +284,8 @@ namespace JMMT.JMMT
                 {
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originoakSkeletonMeleeBP))
                     {
-                        Main.Mod.Debug("Replacing little dumbass for Big Dumbass");
-                        Game.Instance.EntityCreator.SpawnUnit(originoakSkeletonMelee, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newOakSkelly = Game.Instance.EntityCreator.SpawnUnit(originoakSkeletonMelee, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newOakSkelly.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -395,7 +396,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originSpectreBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(Spectre, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newSpectre = Game.Instance.EntityCreator.SpawnUnit(Spectre, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newSpectre.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -450,7 +452,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originGoblinSentryBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(GoblinSentry, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newGoblinSentry = Game.Instance.EntityCreator.SpawnUnit(GoblinSentry, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newGoblinSentry.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -505,7 +508,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originGoblinSlyEyeBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(GoblinSlyEye, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newGoblinSlyEye = Game.Instance.EntityCreator.SpawnUnit(GoblinSlyEye, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newGoblinSlyEye.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -560,7 +564,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originKoboldSentinelsBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(KoboldSentinels, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newKoboldSentinels = Game.Instance.EntityCreator.SpawnUnit(KoboldSentinels, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newKoboldSentinels.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -615,7 +620,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originKoboldArchersBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(KoboldArchers, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newKoboldArchers = Game.Instance.EntityCreator.SpawnUnit(KoboldArchers, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newKoboldArchers.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -670,7 +676,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originKoboldEvokerBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(KoboldEvoker, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newKoboldEvoker = Game.Instance.EntityCreator.SpawnUnit(KoboldEvoker, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newKoboldEvoker.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -726,7 +733,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRWTransmuterBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(RWTransmuter, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newRWTransmuter = Game.Instance.EntityCreator.SpawnUnit(RWTransmuter, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newRWTransmuter.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -781,7 +789,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRWBanditRogueMeleeBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(RWBanditRogueMelee, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newRWBanditRogueMelee = Game.Instance.EntityCreator.SpawnUnit(RWBanditRogueMelee, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newRWBanditRogueMelee.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -836,7 +845,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRWBanditRogueRangedBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(RWBanditRogueRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newRWBanditRogueRanged = Game.Instance.EntityCreator.SpawnUnit(RWBanditRogueRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newRWBanditRogueRanged.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -891,7 +901,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRWBanditFighterlevel4BP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(RWBanditFighterlevel4, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newRWBanditFighterlevel4 = Game.Instance.EntityCreator.SpawnUnit(RWBanditFighterlevel4, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newRWBanditFighterlevel4.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -946,7 +957,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRWBanditFighterRangedBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(RWBanditFighterRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newRWBanditFighterRanged = Game.Instance.EntityCreator.SpawnUnit(RWBanditFighterRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newRWBanditFighterRanged.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1001,7 +1013,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originLHBanditFighterlevel4BP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(LHBanditFighterlevel4, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newLHBanditFighterlevel4 = Game.Instance.EntityCreator.SpawnUnit(LHBanditFighterlevel4, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newLHBanditFighterlevel4.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1056,7 +1069,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originLHBanditFighterRangedBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(LHBanditFighterRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newLHBanditFighterRanged = Game.Instance.EntityCreator.SpawnUnit(LHBanditFighterRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newLHBanditFighterRanged.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1111,7 +1125,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originLHBanditConjurerBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(LHBanditConjurer, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newLHBanditConjurer = Game.Instance.EntityCreator.SpawnUnit(LHBanditConjurer, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newLHBanditConjurer.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1221,7 +1236,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originSilverFrogBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(SilverFrog, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newSilverFrog = Game.Instance.EntityCreator.SpawnUnit(SilverFrog, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newSilverFrog.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1276,7 +1292,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originSilverSmallTatzylBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(SilverSmallTatzyl, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newSilverSmallTatzyl = Game.Instance.EntityCreator.SpawnUnit(SilverSmallTatzyl, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newSilverSmallTatzyl.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1331,7 +1348,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originCapitalHydraBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(CapitalHydra, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newCapitalHydra = Game.Instance.EntityCreator.SpawnUnit(CapitalHydra, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newCapitalHydra.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1386,7 +1404,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHollowEyesArcherBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(HollowEyesArcher, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newHollowEyesArcher = Game.Instance.EntityCreator.SpawnUnit(HollowEyesArcher, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newHollowEyesArcher.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1441,7 +1460,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHollowMeleeFighterABP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(HollowMeleeFighterA, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newHollowMeleeFighterA = Game.Instance.EntityCreator.SpawnUnit(HollowMeleeFighterA, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newHollowMeleeFighterA.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1496,7 +1516,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHollowMeleeFighterBBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(HollowMeleeFighterB, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newHollowMeleeFighterB = Game.Instance.EntityCreator.SpawnUnit(HollowMeleeFighterB, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newHollowMeleeFighterB.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1551,7 +1572,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHollowMeleeBrawlerBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(HollowMeleeBrawler, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newHollowMeleeBrawler = Game.Instance.EntityCreator.SpawnUnit(HollowMeleeBrawler, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newHollowMeleeBrawler.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1606,7 +1628,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originClericofGorumBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(ClericofGorum, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newClericofGorum = Game.Instance.EntityCreator.SpawnUnit(ClericofGorum, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newClericofGorum.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1661,7 +1684,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originDweomercatBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(Dweomercat, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newDryad = Game.Instance.EntityCreator.SpawnUnit(Dweomercat, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newDryad.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1717,7 +1741,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originGhostMageArmagBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(GhostMageArmag, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newGhostMage = Game.Instance.EntityCreator.SpawnUnit(GhostMageArmag, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newGhostMage.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1772,7 +1797,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originInquisitorArmagABP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(InquisitorArmagA, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newInquisitorArmagA = Game.Instance.EntityCreator.SpawnUnit(InquisitorArmagA, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newInquisitorArmagA.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1827,7 +1853,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originInquisitorArmagBBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(InquisitorArmagB, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newInquisitorArmagB = Game.Instance.EntityCreator.SpawnUnit(InquisitorArmagB, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newInquisitorArmagB.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1882,7 +1909,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originHollowNightmareArcherBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(HollowNightmareArcher, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newHollowArcher = Game.Instance.EntityCreator.SpawnUnit(HollowNightmareArcher, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newHollowArcher.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1937,7 +1965,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originGhostMageArmagTwoBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(GhostMageArmagTwo, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newGhostMageB = Game.Instance.EntityCreator.SpawnUnit(GhostMageArmagTwo, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newGhostMageB.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -1992,7 +2021,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRiverBladeBardBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(RiverBladeBard, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newRiverBladeBard = Game.Instance.EntityCreator.SpawnUnit(RiverBladeBard, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newRiverBladeBard.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -2047,7 +2077,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRiverBladeRogueMeleeBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(RiverBladeRogueMelee, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newRiverBladeRogueMelee = Game.Instance.EntityCreator.SpawnUnit(RiverBladeRogueMelee, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newRiverBladeRogueMelee.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -2102,7 +2133,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRiverBladeFighterRangedBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(RiverBladeFighterRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newRiverBladeFighterRanged = Game.Instance.EntityCreator.SpawnUnit(RiverBladeFighterRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newRiverBladeFighterRanged.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -2157,7 +2189,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRiverBladeRogueRangedBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(RiverBladeRogueRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newRiverBladeRogueRanged = Game.Instance.EntityCreator.SpawnUnit(RiverBladeRogueRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newRiverBladeRogueRanged.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -2212,7 +2245,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originRiverBladeClericBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(RiverBladeCleric, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newRiverBladeCleric = Game.Instance.EntityCreator.SpawnUnit(RiverBladeCleric, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newRiverBladeCleric.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -2378,7 +2412,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originWhiteroseRangedBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(WhiteroseRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newWhiteroseRanged = Game.Instance.EntityCreator.SpawnUnit(WhiteroseRanged, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newWhiteroseRanged.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -2433,7 +2468,8 @@ namespace JMMT.JMMT
                     if (unit.Blueprint.AssetGuidThreadSafe.Equals(originWereratIrovettiBP))
                     {
 
-                        Game.Instance.EntityCreator.SpawnUnit(WereratIrovetti, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        var newWereratIrovetti = Game.Instance.EntityCreator.SpawnUnit(WereratIrovetti, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newWereratIrovetti.GroupId = unit.GroupId;
                         unit.Destroy();
                     }
                 }
@@ -2445,6 +2481,10 @@ namespace JMMT.JMMT
 
         }
     }
+
+   
+
+    
 
 }
 
