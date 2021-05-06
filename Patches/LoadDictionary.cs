@@ -68,9 +68,13 @@ namespace JMMT.Patches
                 JMMT.ChangeRiverBladeCleric.Fix();
                 JMMT.ChangeWhiteroseRanged.Fix();
                 JMMT.ChangeWereratIrovetti.Fix();
-   
-
+                JMMT.CopyVeteranTroll.Fix();
+                JMMT.CopyAdvancedErinyes.Fix();
+                JMMT.CopyWrigglingWorm.Fix();
+                JMMT.CopyHATEOTTreant.Fix();
+                JMMT.CopyAlphaWorg.Fix();
                 
+
 #if DEBUG
                 string guid_file_name = $@"{ModPath}blueprints.txt";
                 Helpers.GuidStorage.dump(guid_file_name);
