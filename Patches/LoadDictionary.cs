@@ -73,6 +73,11 @@ namespace JMMT.Patches
                 JMMT.CopyWrigglingWorm.Fix();
                 JMMT.CopyHATEOTTreant.Fix();
                 JMMT.CopyAlphaWorg.Fix();
+                JMMT.ChangeThanadaemonMelee.Fix();
+                JMMT.ChangeThanadaemonArcher.Fix();
+                JMMT.ChangeAstraSoul.Fix();
+                JMMT.ChangeDryad.Fix();
+                JMMT.ChangeTreant.Fix();
                 
 
 #if DEBUG

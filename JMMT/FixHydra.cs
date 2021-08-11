@@ -2763,7 +2763,293 @@ namespace JMMT.JMMT
     }
 
 
-    
+    //Magical Prison
+
+    class ChangeThanadaemonMelee : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originThanadaemonMeleeBP = "622b8701c4f2468479b9f533c2cc24e5";
+        static readonly string copyThanadaemonMeleeBP = "4573a45ceb974197b192db5fb52ab8cd";
+        static readonly string areaToReplaceBPIn = "664991b3848d8d346a6acaaccfa8a128";
+
+        static BlueprintUnit ThanadaemonMelee;
+
+        public static void Fix()
+        {
+            ThanadaemonMelee = library.CopyAndAdd<BlueprintUnit>(originThanadaemonMeleeBP, "JMMTThanadaemonMelee", copyThanadaemonMeleeBP); //copies, not a deep copy
+            ThanadaemonMelee.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            ThanadaemonMelee.LocalizedName.String = Helpers.CreateString("JMMTThanadaemonMelee", "Hellish Skeletal Champion");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originThanadaemonMeleeBP))
+                    {
+
+                        var newGhostMage = Game.Instance.EntityCreator.SpawnUnit(ThanadaemonMelee, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newGhostMage.GroupId = unit.GroupId;
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+
+    class ChangeThanadaemonArcher : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originThanadaemonArcherBP = "a24e752e4748bd548936020938effee1";
+        static readonly string copyThanadaemonArcherBP = "536c295c5f604b9ca3ffb03a945c5620";
+        static readonly string areaToReplaceBPIn = "664991b3848d8d346a6acaaccfa8a128";
+
+        static BlueprintUnit ThanadaemonArcher;
+
+        public static void Fix()
+        {
+            ThanadaemonArcher = library.CopyAndAdd<BlueprintUnit>(originThanadaemonArcherBP, "JMMTThanadaemonArcher", copyThanadaemonArcherBP); //copies, not a deep copy
+            ThanadaemonArcher.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            ThanadaemonArcher.LocalizedName.String = Helpers.CreateString("JMMTThanadaemonArcher", "Hellish Skeletal Champion Archer");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originThanadaemonArcherBP))
+                    {
+
+                        var newGhostMage = Game.Instance.EntityCreator.SpawnUnit(ThanadaemonArcher, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newGhostMage.GroupId = unit.GroupId;
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+
+    class ChangeAstraSoul : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originAstraSoulBP = "6a878d7e0440316468ff56bf65bc5ee5";
+        static readonly string copyAstraSoulBP = "4603223d326a4eb598b7da6cad633683";
+        static readonly string areaToReplaceBPIn = "664991b3848d8d346a6acaaccfa8a128";
+
+        static BlueprintUnit AstraSoul;
+
+        public static void Fix()
+        {
+            AstraSoul = library.CopyAndAdd<BlueprintUnit>(originAstraSoulBP, "JMMTAstraSoul", copyAstraSoulBP); //copies, not a deep copy
+            AstraSoul.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            AstraSoul.LocalizedName.String = Helpers.CreateString("JMMTAstraSoul", "Ancient Soul Eater");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originAstraSoulBP))
+                    {
+
+                        var newGhostMage = Game.Instance.EntityCreator.SpawnUnit(AstraSoul, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newGhostMage.GroupId = unit.GroupId;
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+
+
+
+    class ChangeDryad : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originDryadBP = "82a6be0ba1d061243848871ce2feda27";
+        static readonly string copyDryadBP = "42b38b9a9dbb4d55b28bdeda516eeedd";
+        static readonly string areaToReplaceBPIn = "664991b3848d8d346a6acaaccfa8a128";
+
+        static BlueprintUnit Dryad;
+
+        public static void Fix()
+        {
+            Dryad = library.CopyAndAdd<BlueprintUnit>(originDryadBP, "JMMTDryadHelp", copyDryadBP); //copies, not a deep copy
+            Dryad.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            Dryad.LocalizedName.String = Helpers.CreateString("JMMTDryadHelp", "Dryad Follower");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originDryadBP))
+                    {
+
+                        var newDryad = Game.Instance.EntityCreator.SpawnUnit(Dryad, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newDryad.GroupId = unit.GroupId;
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeTreant : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originTreantBP = "b2c86a184c5f9c942aeb77e52ea1d17d";
+        static readonly string copyTreantBP = "3d4ca2bc4dd44a3683709c389e3ef0e3";
+        static readonly string areaToReplaceBPIn = "664991b3848d8d346a6acaaccfa8a128";
+
+        static BlueprintUnit Treant;
+
+        public static void Fix()
+        {
+            Treant = library.CopyAndAdd<BlueprintUnit>(originTreantBP, "JMMTTreantHelp", copyTreantBP); //copies, not a deep copy
+            Treant.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            Treant.LocalizedName.String = Helpers.CreateString("JMMTTreantHelp", "Primal Treant");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originTreantBP))
+                    {
+
+                        var newDryad = Game.Instance.EntityCreator.SpawnUnit(Treant, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newDryad.GroupId = unit.GroupId;
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
 
 }
 
