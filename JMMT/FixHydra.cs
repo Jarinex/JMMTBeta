@@ -3051,6 +3051,231 @@ namespace JMMT.JMMT
     }
 
 
+    class ChangeNereid : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originNereidBP = "0ec270b3151e5fb4e889ef9c004dd366";
+        static readonly string copyNereidBP = "9a9b22c8d9024798a36ef6848da7c7a2";
+        static readonly string areaToReplaceBPIn = "664991b3848d8d346a6acaaccfa8a128";
+
+        static BlueprintUnit Nereid;
+
+        public static void Fix()
+        {
+            Nereid = library.CopyAndAdd<BlueprintUnit>(originNereidBP, "JMMTNereidHelp", copyNereidBP); //copies, not a deep copy
+            Nereid.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            Nereid.LocalizedName.String = Helpers.CreateString("JMMTNereidHelp", "Alluring Nereid");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originNereidBP))
+                    {
+
+                        var newNereid = Game.Instance.EntityCreator.SpawnUnit(Nereid, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newNereid.GroupId = unit.GroupId;
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeWaterElemental : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originWaterelementalBP = "633e8d41e3eb62a4ebf154324ddedc5d";
+        static readonly string copyWaterelementalBP = "993612e826514bc9b3c6caaff5adefaa";
+        static readonly string areaToReplaceBPIn = "664991b3848d8d346a6acaaccfa8a128";
+
+        static BlueprintUnit Waterelemental;
+
+        public static void Fix()
+        {
+            Waterelemental = library.CopyAndAdd<BlueprintUnit>(originWaterelementalBP, "JMMTWaterelemental", copyWaterelementalBP); //copies, not a deep copy
+            Waterelemental.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            Waterelemental.LocalizedName.String = Helpers.CreateString("JMMTWaterelemental", "Ancient Water Elemental");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originWaterelementalBP))
+                    {
+
+                        var newNereid = Game.Instance.EntityCreator.SpawnUnit(Waterelemental, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newNereid.GroupId = unit.GroupId;
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+
+    class ChangeOozes : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originOozeBP = "46f09f7a14c1e084bb091d18ab385db6";
+        static readonly string copyOozeBP = "6216383fc3ea4b8a950c7bdfcb707547";
+        static readonly string areaToReplaceBPIn = "664991b3848d8d346a6acaaccfa8a128";
+
+        static BlueprintUnit Ooze;
+
+        public static void Fix()
+        {
+            Ooze = library.CopyAndAdd<BlueprintUnit>(originOozeBP, "JMMTOoze", copyOozeBP); //copies, not a deep copy
+            Ooze.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            Ooze.LocalizedName.String = Helpers.CreateString("JMMTOoze", "Ooze");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originOozeBP))
+                    {
+
+                        var newOoze = Game.Instance.EntityCreator.SpawnUnit(Ooze, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newOoze.GroupId = unit.GroupId;
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
+    class ChangeDeva : IModEventHandler, IAreaLoadingStagesHandler //ModMaker event interface for handling mod enable/disable, IArea is for the onAreaLoad methods
+    {
+        static LibraryScriptableObject library => Main.Library;
+
+        public int Priority => 200; //don't really worry about this.  Mainly helpful with menu creation. 
+
+        static readonly string originDevaBP = "6af99c59cc046dc42be46ab1ebbf38d5";
+        static readonly string copyDevaBP = "051dce1d2c60412d92a4c29081e18c08";
+        static readonly string areaToReplaceBPIn = "664991b3848d8d346a6acaaccfa8a128";
+
+        static BlueprintUnit Deva;
+
+        public static void Fix()
+        {
+            Deva = library.CopyAndAdd<BlueprintUnit>(originDevaBP, "JMMTDeva", copyDevaBP); //copies, not a deep copy
+            Deva.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>(); //Creates a new instance so the original hydra's name doesn't change too.
+            Deva.LocalizedName.String = Helpers.CreateString("JMMTDeva", "Fallen Deva");
+
+        }
+
+        public void HandleModDisable()
+        {
+            EventBus.Subscribe(this); //removes the event
+        }
+
+        public void HandleModEnable()
+        {
+            EventBus.Subscribe(this); //Adds the onAreaScenesLoaded event
+        }
+
+
+
+        public void OnAreaLoadingComplete() //once the area is loaded, check for the original hydra
+        {
+            if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(areaToReplaceBPIn))
+            {
+
+                foreach (var unit in Game.Instance.State.Units)
+                {
+                    if (unit.Blueprint.AssetGuidThreadSafe.Equals(originDevaBP))
+                    {
+
+                        var newDeva = Game.Instance.EntityCreator.SpawnUnit(Deva, unit.Position, Quaternion.LookRotation(unit.OrientationDirection), Game.Instance.CurrentScene.MainState);
+                        newDeva.GroupId = unit.GroupId;
+                        unit.Destroy();
+                    }
+                }
+            }
+        }
+
+        public void OnAreaScenesLoaded() //unused
+        {
+
+        }
+    }
+
 }
 
 

@@ -78,6 +78,10 @@ namespace JMMT.Patches
                 JMMT.ChangeAstraSoul.Fix();
                 JMMT.ChangeDryad.Fix();
                 JMMT.ChangeTreant.Fix();
+                JMMT.ChangeNereid.Fix();
+                JMMT.ChangeWaterElemental.Fix();
+                JMMT.ChangeOozes.Fix();
+                JMMT.ChangeDeva.Fix();
                 
 
 #if DEBUG
